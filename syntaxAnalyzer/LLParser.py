@@ -34,7 +34,12 @@ class LLParser():
         def E():
             nonlocal i, keys, print_buffer
             print_buffer.append("enter E")
-            result = T()
+            
+            if keys[i][1] != "N":
+                raise Exception("Syntax Error")
+            
+            result = T()    
+            
             while True:
                 key = keys[i]
                 if key[0] == '+':
@@ -52,6 +57,10 @@ class LLParser():
         def T():
             nonlocal i, keys, print_buffer
             print_buffer.append("enter T")
+            
+            if keys[i][1] != "N":
+                raise Exception("Syntax Error")
+            
             result = N()
             
             while True:

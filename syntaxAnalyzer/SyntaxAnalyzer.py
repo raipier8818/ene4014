@@ -8,16 +8,22 @@ class SyntaxAnalyzer:
         self.__parser = parser
         
     def lexer(self, expression):
-        return self.__lexer.lexer(expression)
+        try:
+            return self.__lexer.lexer(expression)
+        except Exception as e:
+            return None, None
     
     def parser(self, params):
-        return self.__parser.parser(params)        
+        try:
+            return self.__parser.parser(params)
+        except Exception as e:
+            return None    
         
 def main():
     L = Lexer.Lexer()
     LLP = LLParser.LLParser()
     LRP = LRParser.LRParser()
-    LLS = SyntaxAnalyzer(L, LRP)
+    LLS = SyntaxAnalyzer(L, LLP)
     while True:
         try:
             string = input(">> ")
