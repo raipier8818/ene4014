@@ -1,0 +1,7 @@
+E'-> E
+E -> E + T
+E -> E - T
+E -> T
+T -> T * N
+T -> T / N
+T -> N
