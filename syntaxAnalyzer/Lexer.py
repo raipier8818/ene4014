@@ -23,8 +23,9 @@ class Lexer:
                 elif expression[i] == ' ':
                     i += 1
                 else:
-                    error = "Invalid character found: " + expression[i]
-                    raise Exception(error)
+                    lexemes.append(expression[i])
+                    tokens.append("unknown")
+                    i += 1
                 
             lexemes.append('$')
             tokens.append('$')
