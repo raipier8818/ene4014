@@ -1,4 +1,7 @@
 class Table:
+    # Table class for printing tables for dynamic length data
+    
+    # Set table information (name, columns, align right columns)
     def __init__(self, table_name:str, columns:list, align_right_col_idxs:list = []):
         self.table_name = table_name
         

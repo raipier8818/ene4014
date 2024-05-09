@@ -1,3 +1,4 @@
+import sys
 import Lexer
 import LLParser
 import LRParser
@@ -8,33 +9,36 @@ class SyntaxAnalyzer:
         self.__parser = parser
         
     def lexer(self, expression):
-        try:
-            return self.__lexer.lexer(expression)
-        except Exception as e:
-            return None, None
+        return self.__lexer.lexer(expression)
     
     def parser(self, params):
         try:
             return self.__parser.parser(params)
         except Exception as e:
-            return None    
+            return "unknown"
         
 def main():
     L = Lexer.Lexer()
     LLP = LLParser.LLParser()
     LRP = LRParser.LRParser()
-    LLS = SyntaxAnalyzer(L, LLP)
+    
+    # SyntaxAnalyzer using LL Parser
+    # SA = SyntaxAnalyzer(L, LLP)
+    
+    # SyntaxAnalyzer using LR Parser
+    SA = SyntaxAnalyzer(L, LRP)
+    
     while True:
         try:
             string = input(">> ")
             if string == "":
                 continue
             
-            lexemes, tokens = LLS.lexer(string)
+            lexemes, tokens = SA.lexer(string)
             print ("Lexemes:" + str(lexemes))
             print ("Tokens:" + str(tokens))
             
-            value = LLS.parser((lexemes, tokens))
+            value = SA.parser((lexemes, tokens))
             print ("Result: " + str(value))
         except Exception as e:
             print(e)
